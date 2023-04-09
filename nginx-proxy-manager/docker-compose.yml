@@ -1,0 +1,46 @@
+version: "3"
+
+services:
+    nginxproxymanager:
+        image: jc21/nginx-proxy-manager:2
+        container_name: npm_app
+        restart: unless-stopped
+        ports:
+            - 80:80
+            - 81:81
+            - 443:443
+        environment:
+            - DB_MYSQL_HOST=nginxproxymanager-db
+            - DB_MYSQL_PORT=3306
+            - DB_MYSQL_USER=npm
+            - DB_MYSQL_PASSWORD=npm
+            - DB_MYSQL_NAME=npm
+        volumes:
+            - nginxproxymanager_data:/data
+            - nginxproxymanager_ssl:/etc/letsencrypt
+        networks:
+            - aquahubstudio
+            - nginx-proxy-manager
+    nginxproxymanager_db:
+        image: jc21/mariadb-aria:10.4.15
+        container_name: npm_db
+        restart: unless-stopped
+        environment:
+            - MYSQL_ROOT_PASSWORD=npm
+            - MYSQL_DATABASE=npm
+            - MYSQL_USER=npm
+            - MYSQL_PASSWORD=npm
+        volumes:
+            - nginxproxymanager_db:/var/lib/mysql
+        networks:
+            - nginx-proxy-manager
+
+networks:
+    aquahubstudio:
+        external: true
+    nginx-proxy-manager:
+
+volumes:
+    nginxproxymanager_data:
+    nginxproxymanager_ssl:
+    nginxproxymanager_db:
