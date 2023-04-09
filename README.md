@@ -30,8 +30,15 @@ Create **ghost** container:
 docker compose -f ghost/docker-compose.yml up -d [--force-recreate]
 ```
 
+Create **duplicati** container:
+
+```bash
+docker compose -f duplicati/docker-compose.yml up -d [--force-recreate]
+```
+
 ## Services
 
 -   Ghost (blogging)
 -   Nginx proxy manager
 -   Portainer
+-   Duplicati

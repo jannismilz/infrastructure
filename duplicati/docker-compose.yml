@@ -1,0 +1,20 @@
+version: "2.1"
+
+services:
+    duplicati:
+        image: lscr.io/linuxserver/duplicati:2.0.6
+        restart: unless-stopped
+        container_name: duplicati
+        environment:
+            - PUID=0
+            - PGID=0
+            - TZ=Europe/Zurich
+        volumes:
+            - duplicati_config:/config
+            - duplicati_backups:/backups
+            - duplicati_source:/source
+
+volumes:
+    duplicati_config:
+    duplicati_backups:
+    duplicati_source:
