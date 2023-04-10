@@ -16,15 +16,16 @@ services:
             - database__client=mysql
             - database__connection__host=ghost_db
             - database__connection__user=root
-            - database__connection__password=ghost
+            - database__connection__password=${GHOST_DB_ROOT_PASSWORD}
             - database__connection__database=ghost
+            - url=https://blog.aquahub.studio
 
     ghost_db:
         image: mysql:5.7.41
         container_name: ghost_db
         restart: unless-stopped
         environment:
-            - MYSQL_ROOT_PASSWORD=ghost
+            - MYSQL_ROOT_PASSWORD=${GHOST_DB_ROOT_PASSWORD}
             - MYSQL_DATABASE=ghost
         networks:
             - ghost

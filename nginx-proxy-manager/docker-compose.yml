@@ -13,7 +13,7 @@ services:
             - DB_MYSQL_HOST=nginxproxymanager_db
             - DB_MYSQL_PORT=3306
             - DB_MYSQL_USER=npm
-            - DB_MYSQL_PASSWORD=npm
+            - DB_MYSQL_PASSWORD=${NPM_DB_PASSWORD}
             - DB_MYSQL_NAME=npm
         volumes:
             - data:/data
@@ -26,10 +26,10 @@ services:
         container_name: npm_db
         restart: unless-stopped
         environment:
-            - MYSQL_ROOT_PASSWORD=npm
+            - MYSQL_ROOT_PASSWORD=n${NPM_DB_ROOT_PASSWORD}
             - MYSQL_DATABASE=npm
             - MYSQL_USER=npm
-            - MYSQL_PASSWORD=npm
+            - MYSQL_PASSWORD=${NPM_DB_PASSWORD}
         volumes:
             - db:/var/lib/mysql
         networks:
