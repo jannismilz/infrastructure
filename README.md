@@ -44,6 +44,15 @@ Create **duplicati** container:
 docker compose -f duplicati/docker-compose.yml up -d [--force-recreate]
 ```
 
+### Run everything with single command
+
+```bash
+docker compose -f nginx-proxy-manager/docker-compose.yml up -d &&
+docker compose -f portainer/docker-compose.yml up -d &&
+docker compose -f ghost/docker-compose.yml up -d &&
+docker compose -f duplicati/docker-compose.yml up -d
+```
+
 ## Services
 
 -   Ghost (blogging)
