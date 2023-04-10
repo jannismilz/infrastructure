@@ -7,7 +7,7 @@ services:
         restart: unless-stopped
         volumes:
             - /var/run/docker.sock:/var/run/docker.sock
-            - portainer_data:/data
+            - data:/data
         networks:
             - aquahubstudio
 
@@ -16,4 +16,4 @@ networks:
         external: true
 
 volumes:
-    portainer_data:
+    data:

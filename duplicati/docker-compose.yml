@@ -10,11 +10,11 @@ services:
             - PGID=0
             - TZ=Europe/Zurich
         volumes:
-            - duplicati_config:/config
-            - duplicati_backups:/backups
-            - duplicati_source:/source
+            - config:/config
+            - backups:/backups
+            - source:/source
 
 volumes:
-    duplicati_config:
-    duplicati_backups:
-    duplicati_source:
+    config:
+    backups:
+    source:

@@ -16,8 +16,8 @@ services:
             - DB_MYSQL_PASSWORD=npm
             - DB_MYSQL_NAME=npm
         volumes:
-            - nginxproxymanager_data:/data
-            - nginxproxymanager_ssl:/etc/letsencrypt
+            - data:/data
+            - ssl:/etc/letsencrypt
         networks:
             - aquahubstudio
             - nginx-proxy-manager
@@ -31,7 +31,7 @@ services:
             - MYSQL_USER=npm
             - MYSQL_PASSWORD=npm
         volumes:
-            - nginxproxymanager_db:/var/lib/mysql
+            - db:/var/lib/mysql
         networks:
             - nginx-proxy-manager
 
@@ -41,6 +41,6 @@ networks:
     nginx-proxy-manager:
 
 volumes:
-    nginxproxymanager_data:
-    nginxproxymanager_ssl:
-    nginxproxymanager_db:
+    data:
+    ssl:
+    db:
