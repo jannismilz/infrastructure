@@ -6,10 +6,10 @@ In this repo every software we use is documented on how to install in a new infr
 
 # Configure env variables
 
-Run `setupEnv.sh`:
+Run `setupEnv.sh` with `source`(short `.`):
 
 ```bash
-sh setupEnv.sh
+. setupEnv.sh
 ```
 
 ## Running infrastructure
