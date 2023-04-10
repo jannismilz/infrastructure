@@ -26,7 +26,7 @@ services:
         container_name: npm_db
         restart: unless-stopped
         environment:
-            - MYSQL_ROOT_PASSWORD=n${NPM_DB_ROOT_PASSWORD}
+            - MYSQL_ROOT_PASSWORD=${NPM_DB_ROOT_PASSWORD}
             - MYSQL_DATABASE=npm
             - MYSQL_USER=npm
             - MYSQL_PASSWORD=${NPM_DB_PASSWORD}
