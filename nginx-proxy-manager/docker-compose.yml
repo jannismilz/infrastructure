@@ -3,7 +3,7 @@ version: "3"
 services:
     nginxproxymanager:
         image: jc21/nginx-proxy-manager:2
-        container_name: npm_app
+        container_name: npm
         restart: unless-stopped
         ports:
             - 80:80
