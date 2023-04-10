@@ -20,12 +20,12 @@ services:
             - database__connection__database=ghost
 
     ghost_db:
-        image: mysql:8.0
+        image: mysql:5.7.41
         container_name: ghost_db
-        command: --default-authentication-plugin=mysql_native_password
         restart: unless-stopped
         environment:
             - MYSQL_ROOT_PASSWORD=ghost
+            - MYSQL_DATABASE=ghost
         networks:
             - ghost
         volumes:
