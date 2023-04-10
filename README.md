@@ -4,6 +4,14 @@ In this repo every software we use is documented on how to install in a new infr
 
 > All our servers run linux on it so all guides are also based on linux
 
+# Configure env variables
+
+Run `setupEnv.sh`:
+
+```bash
+sh setupEnv.sh
+```
+
 ## Running infrastructure
 
 Create `aquahubstudio` network:
