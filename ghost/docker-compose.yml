@@ -2,7 +2,7 @@ version: "3.3"
 
 services:
     ghost:
-        image: bitnami/ghost:5.39.0
+        image: ghost:5.42.0
         container_name: ghost
         restart: unless-stopped
         depends_on:
@@ -11,30 +11,26 @@ services:
             - aquahubstudio
             - ghost
         volumes:
-            - data:/bitnami/ghost
+            - data:/var/lib/ghost
         environment:
+            - database__client=mysql
+            - database__connection__host=ghost_db
+            - database__connection__user=root
+            - database__connection__password=${GHOST_DB_ROOT_PASSWORD}
+            - database__connection__database=ghost
             - url=https://blog.aquahub.studio
-            - GHOST_HOST=https://blog.aquahub.studio
-            - GHOST_EMAIL=$$config_ghost_email
-            - GHOST_PASSWORD=$$secret_ghost_password
-            - GHOST_DATABASE_HOST=ghost_db
-            - GHOST_DATABASE_USER=root
-            - GHOST_DATABASE_PASSWORD=${GHOST_DB_ROOT_PASSWORD}
-            - GHOST_DATABASE_NAME=ghost
-            - GHOST_DATABASE_PORT_NUMBER=3306
 
     ghost_db:
-        image: mariadb:10.9.5
+        image: mysql:5.7.41
         container_name: ghost_db
         restart: unless-stopped
         environment:
-            - MARIADB_DATABASE=ghost
-            - MARIADB_ROOT_USER=root
-            - MARIADB_ROOT_PASSWORD=${GHOST_DB_ROOT_PASSWORD}
+            - MYSQL_ROOT_PASSWORD=${GHOST_DB_ROOT_PASSWORD}
+            - MYSQL_DATABASE=ghost
         networks:
             - ghost
         volumes:
-            - db:/bitnami/mariadb
+            - db:/var/lib/mysql
 
 networks:
     aquahubstudio:

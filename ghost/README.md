@@ -1,9 +1,9 @@
 Official website: https://ghost.org/
 
--   **Ghost (from Bitnami):** `v5.39.0`
--   **MariaDB (from Bitnami):** `v10.9.5`
--   **Last Updated:** `13.04.2023`
+-   **Ghost:** `v5.42.0`
+-   **MySQL:** `v5.7.41`
+-   **Last Updated:** `10.04.2023`
 
 # Installation
 
-**Guide from docker hub (from Bitnami):** https://hub.docker.com/r/bitnami/ghost
+**Guide from docker hub:** https://hub.docker.com/_/ghost
