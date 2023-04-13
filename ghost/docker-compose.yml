@@ -15,8 +15,6 @@ services:
         environment:
             - url=https://blog.aquahub.studio
             - GHOST_HOST=https://blog.aquahub.studio
-            - GHOST_EMAIL=$$config_ghost_email
-            - GHOST_PASSWORD=$$secret_ghost_password
             - GHOST_DATABASE_HOST=ghost_db
             - GHOST_DATABASE_USER=root
             - GHOST_DATABASE_PASSWORD=${GHOST_DB_ROOT_PASSWORD}
