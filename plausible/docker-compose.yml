@@ -12,7 +12,7 @@ services:
         container_name: plausible_db
         restart: unless-stopped
         volumes:
-            - db-data:/var/lib/postgresql/data
+            - db:/var/lib/postgresql/data
         environment:
             - POSTGRES_PASSWORD=${PLAUSIBLE_DB_PASSWORD}
         networks:
@@ -23,7 +23,7 @@ services:
         container_name: plausible_events_db
         restart: unless-stopped
         volumes:
-            - event-data:/var/lib/clickhouse
+            - events:/var/lib/clickhouse
             - ./clickhouse/clickhouse-config.xml:/etc/clickhouse-server/config.d/logging.xml:ro
             - ./clickhouse/clickhouse-user-config.xml:/etc/clickhouse-server/users.d/logging.xml:ro
         ulimits:
@@ -55,6 +55,6 @@ networks:
     plausible:
 
 volumes:
-    db-data:
-    event-data:
+    db:
+    events:
     geoip:
