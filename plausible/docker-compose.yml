@@ -31,7 +31,6 @@ services:
                 soft: 262144
                 hard: 262144
         networks:
-            - aquahubstudio
             - plausible
 
     plausible:
@@ -47,6 +46,7 @@ services:
             - BASE_URL=https://analytics.aquahub.studio
             - SECRET_KEY_BASE=${PLAUSIBLE_SECRET_KEY}
         networks:
+            - aquahubstudio
             - plausible
 
 networks:
