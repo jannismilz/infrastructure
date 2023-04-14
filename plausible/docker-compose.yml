@@ -14,7 +14,7 @@ services:
         volumes:
             - db:/var/lib/postgresql/data
         environment:
-            - POSTGRES_PASSWORD=${PLAUSIBLE_DB_PASSWORD}
+            - POSTGRES_PASSWORD=postgres
         networks:
             - plausible
 
