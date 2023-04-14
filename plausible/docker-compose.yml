@@ -2,18 +2,25 @@ version: "3.3"
 services:
     mail:
         image: bytemark/smtp
+        container_name: plausible_mail
         restart: unless-stopped
+        networks:
+            - plausible
 
     plausible_db:
         image: postgres:14-alpine
+        container_name: plausible_db
         restart: unless-stopped
         volumes:
             - db-data:/var/lib/postgresql/data
         environment:
             - POSTGRES_PASSWORD=${PLAUSIBLE_DB_PASSWORD}
+        networks:
+            - plausible
 
     plausible_events_db:
         image: clickhouse/clickhouse-server:22.6-alpine
+        container_name: plausible_events_db
         restart: unless-stopped
         volumes:
             - event-data:/var/lib/clickhouse
@@ -23,9 +30,13 @@ services:
             nofile:
                 soft: 262144
                 hard: 262144
+        networks:
+            - aquahubstudio
+            - plausible
 
     plausible:
         image: plausible/analytics:v1.5
+        container_name: plausible
         restart: unless-stopped
         command: sh -c "sleep 10 && /entrypoint.sh db createdb && /entrypoint.sh db migrate && /entrypoint.sh run"
         depends_on:
@@ -35,6 +46,13 @@ services:
         environment:
             - BASE_URL=https://analytics.aquahub.studio
             - SECRET_KEY_BASE=${PLAUSIBLE_SECRET_KEY}
+        networks:
+            - plausible
+
+networks:
+    aquahubstudio:
+        external: true
+    plausible:
 
 volumes:
     db-data:
